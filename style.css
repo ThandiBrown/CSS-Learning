@@ -1,0 +1,267 @@
+/* CSS is cascading -- previously defined styles can be overridden as you go further down the file. Order matters. Specificity can override this.
+
+specificity website: https://specificity.keegan.st/
+
+color palette website: https://www.coolors.co
+https://www.coolors.co/contrast-checker
+ */
+ /* user agent stylesheet is a stylesheet that can be viewed in Inspect of the values that the browser sets by default */
+
+/* alternative to adding a meta link tag to import fonts 
+the more fonts you import from Google, the  longer your page will take to load*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+ 
+
+/* universal selector
+selects all the elements */
+* {
+    /* CSS reset */
+    margin:0;
+    padding:0;
+    /* 
+    box-sizing: content-box is the default setting. Thhis means that if the width is set to 400px, the border and padding won't be included in that value. The actual *content* will span 400px.
+    box-sizing: border-box makes it so that the border and padding, along with the content, would not exceed 400px
+     */
+    box-sizing: border-box;
+}
+
+/*  body is an element selector*/
+body {
+    /* This will affect all of body's children  due to inheritance. Things related to typography are inherited but everything else is not. Such as the border is not being inherited to each child.*/
+    font-size: 22px;
+    border: 3px solid;
+    /* You don't want to use the viewport width because once the page height becomes too long, a sccrollbar will appear to the right. vw does not account for this scrollbar width and will also add a scrollbar on the bottom x-axis in attempt to show the space of the page that the scrollbar is covering*/
+    width: 100vw;
+    width: 100%;
+    /* the body does not take up the height of the full-page, only long enough for the content within it. This is a fix. */
+    min-height: 100vh;
+}
+
+p {
+    border: 3px solid;
+    margin-bottom: 5%;
+}
+
+/* class and ID selectors
+ Not good practice to use IDs. Want to stick to classes */
+.highlight, #second {
+    
+    font-style: italic;
+    font-family:'Courier New', Courier, monospace;
+
+    background-color:gold;
+    color:darkblue;
+    color:rgb(94, 4, 146);
+    /* a (alpha) controls transparency */
+    color:rgba(94, 4, 146, 0.5);
+    /* hexadecimal. 0-9, A-F 
+        #F00, #FF0000 (red)
+        #0F0, #00FF00 (green)
+        #00F, #0000FF (blue)
+     */
+    color: rgb(17, 119, 17);
+    /* hue, saturation and lightness
+    hue: the different color ranges. red is 0, and pink is around the 300/360s.
+    saturation at 100% is the full-color and at 0% it would be gray
+    50% lightness means is in the middle (it can become equally lighter or darker ) */
+    color: hsl(179, 93%, 34%);
+    
+
+    text-transform: uppercase;
+
+    line-height:1.5;
+
+}
+
+
+/* form elements do not naturally inherit typography so this can be written below to cause such inheritance */
+button, input, textarea {
+    font: inherit;
+}
+
+.a {
+    /* pixels is  the most common absolute unit that will be used 
+    Is not a good idea to use it on font size because the font can't be increased in the browsers user settings. This is poor for accessibility and for user control if they want to make the text larger.
+    rem - relative unit
+    font-size set by the browser.
+    Every element starts off with a size of 1rem by default. 2rem would be double the size naturally established by the browser.
+    This is good so if the user settings change, it'll all be relative to the root element/browser settings
+    */
+    font-size: 16px;
+    font-size: 1rem;
+    /* If the parent of "a" also has a font size of 2rem, this will not affect the element because it is *only* dependent on the size of the root doc elem (html selector), not its parent */
+    font-size: 2rem;
+
+    /* this *would* in fact be impacted by its parent and the font size would be compounded (4em). thus em not desired */
+    font-size: 2em;
+
+    /* Can also be used on padding and margins. bc it's em, this will be relative to the font size of the element! so 0.5em of 2rem is a 1rem padding*/
+    padding: 0.5em;
+    
+    /* width is only long enough to contain five characters per line */
+    width:  5ch;
+
+}
+
+.a button {
+    /* em is also good to use for padding and margins related to a button */
+    font-size: 1rem;
+    padding:0.5em; 
+}
+
+
+.b {
+   margin: 2em; 
+   /* top-bottom:2
+      right-left:3 */
+   margin: 2em 3em;
+   margin: 2em auto;
+   /* top:2
+      right-left:3
+      bottom:4 */
+   margin: 2em 3em 4em;   
+   /* (clockwise rotation)
+      top:2
+      right:3
+      bottom:4 
+      left:5 */
+   margin: 2em 3em 4em 5em;
+   /* Horizontally centers element within container. equal right-left margins to fill remaining space */
+   margin:auto;
+   /* inherent margin from parent */
+   margin-left:inherit;
+   
+   
+   
+   border-top-width: 5px;
+   border-top-style: ridge;
+   border-top-color: lightgreen;
+   border-top: 10px solid green; /* shorthand */   
+   
+   border-top-style: double;
+   border-right: 10px dotted blue;
+   
+   /* The outline doesn't take up space but the border does.not calculated in the box model equation. */
+   outline:5px solid gold;
+   /* Pushes it five pixels away from the box */
+   outline-offset:5px;
+   /* outline inside of the box */
+   outline-offset:-20px;
+}
+
+.circle {
+    background-color:pink;
+    width:100px;
+    height:100px;
+    border: 2px solid purple;
+    outline: 2px solid red;
+    outline-offset: 0.25rem;
+    margin: auto;
+    
+    border-radius:50%;
+    /* half of the width and height */
+    border-radius:50px;
+}
+
+/* Typography */
+.c {
+    text-decoration: underline;
+    text-decoration: line-through;
+    /* good for links */
+    text-decoration: none;
+    
+    text-transform: capitalize;
+    text-transform: lowercase;
+    
+    /* typically a default */
+    text-align: left;
+    /* forces words to breaking in a way where each line staarts in ends at the same x-xis point. Popular with newspapers */
+    text-align: justify;
+    text-align: right;
+    
+    line-height: 3;
+    word-spacing: 2em;
+    
+    font-weight: 100; /* light */
+    font-weight: 900; /* bold */
+    font-weight: lighter;
+    font-weight: bold;
+    
+    font-style:italic;
+    /* a stronger italic */
+    font-style:oblique;
+    font-style:normal;
+    
+    /* anytime a font name has a space in it, it needs to be surrounded by quotes */
+    font-family:'Courier New', Courier, monospace;
+    font-family: cursive;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.c span{
+    letter-spacing: 2em;
+}
+
+.d {
+    
+}
+
+.d a {
+    /* default */
+    text-decoration:underline;
+    text-decoration:none;
+    /* red stop value as cursor */
+    cursor: not-allowed;
+    
+}
+
+
+/* visited is a pseudo-class. Psseudo-classes represent the current state of an element. The state of an anchor element can  change */
+.d a:visited {
+    color:purple;
+}
+
+/* order matters. hover should come after visited, so that even if the link has been visited, the hover functionality still work 
+focus is good for accessibility when the user is tabbing through the page*/
+.d a:hover, commanda:focus {
+    color:blue;
+}
+
+.d a:active {
+    color:red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#goo {
+    display:inline;
+}

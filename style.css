@@ -396,6 +396,10 @@ block level elements also stack on top of each other*/
 .flag {
     border: 2px solid black;
     width: 70%;
+    /* 
+    without this, the section would only expand according to its paragraph elements, not taking into consideration the length of the div. with this, the section will never have a shorter height than its elements 
+    */
+    display:flow-root;
 }
 
 .flag .stars{

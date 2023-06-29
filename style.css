@@ -17,6 +17,7 @@ selects all the elements */
 * {
     /* CSS reset */
     margin:0;
+    /* beware zero padding will affect ol/ul. These come with a natural padding so that the bullets/numbers can be shown. */
     padding:0;
     /* 
     box-sizing: content-box is the default setting. Thhis means that if the width is set to 400px, the border and padding won't be included in that value. The actual *content* will span 400px.
@@ -203,10 +204,6 @@ button, input, textarea {
     letter-spacing: 2em;
 }
 
-.d {
-    
-}
-
 .d a {
     /* default */
     text-decoration:underline;
@@ -236,36 +233,187 @@ focus is good for accessibility when the user is tabbing through the page*/
     color:red;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#goo {
-    display:inline;
+ol, ul {
+    padding-left: 3rem;
 }
+
+.e ol {
+    
+    /* default */
+    list-style-type:decimal;
+    list-style-type:decimal-leading-zero;
+    /* makes an ordered list look like an unordered list */
+    list-style-type:disc;    list-style-type:circle;
+    list-style-type:lower-alpha;    
+    list-style-type:none;    
+    list-style-type:upper-roman;    
+    
+    
+    
+}
+
+.e ul  {
+    text-align:center;
+    /* this is needed to keep the bullet points aligned with the text. Different browsers have different default values for this. Using an 'outside' value will keep the bullet points at their fixed position (on the left of the screen )
+    
+    also when the bullets are inside,padding applies to the bullets and text. when the bullets are outside, the padding only applies to the text/content*/
+    list-style-position: inside;
+    color:red;
+    line-height:1.6;
+    /* 
+    only good if it's already the size you want
+    list-style-image: url('images/4.jpg'); 
+    */
+    /* shorthand: type, image, position
+    list-style: square url() inside;
+     */
+    
+}
+
+.e ul li:nth-child(2) {
+    color:lightblue;
+}
+
+.e ul li:nth-child(odd) {
+    color:darkgreen;
+}
+
+/* called a pseudo-element
+Controls the bullets in a list */
+ul ::marker {
+    color: purple;
+    font-size: 1em;
+    /* this also can support images and icons, not just text */
+    content: "Only five>> ";
+}
+
+/* block level elements naturally take a 100% width available from parent
+block level elements also stack on top of each other*/
+.f p {
+    background-color: lightgray;
+}
+
+/* in-line element: only takes width necessary and does not stack/cause line break */
+.f p:nth-child(2) span{
+    background-color: darkgray;
+    color: whitesmoke;
+    /* inline elements can have padding that is  not confined to it's parent. inline-block can fix this this*/
+    padding: 2rem;
+}
+
+.f .fa  {
+    margin-top: 2rem;
+}
+
+.f .fa span{
+    /* making this man in in-line block element made it adopt properties from both in-line and block
+    - the element remains in-line, but it sizing, padding and margins will affect its parent container or so moreso changes in a way that keeps it looking like a block format
+     */
+    display: inline-block;
+    background-color: darkgray;
+    color: whitesmoke;
+    padding: 2rem;
+    
+}
+
+.f ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: right;
+    background-color: lightgray;
+    /* the element is completely removed from the browser 
+    not accessibility friendly
+    display: none;
+    */
+    
+    
+}
+
+
+.f li {
+    /* this is being used to make a list horizontal
+    so, li are naturally block elements (stack on top of each other and consume the full width), */
+    display: inline-block;
+    /* this only applies to the left and right margin */
+    margin-inline: 0.5rem;
+}
+
+.f li:hover, .f li:focus {
+    background-color: lightblue;
+}
+
+.block {
+    width: 30vw;
+    height: 30vw;
+    background-color: black;
+    color: white;
+    padding: 1rem;
+}
+
+.left {
+    /* elements below this will float to the div's left */
+    float: left;
+}
+
+.g p {
+    /* note that there is no margin applied to the paragraph text next to the float because is outside of the normal flow */
+    margin-left: 10%;
+}
+
+.block2 {
+    width: 30vw;
+    height: 30vw;
+    background-color: darkblue;
+    color: white;
+    padding: 1rem;
+    /* the margin should be applied to the floated object */
+    margin-right: 10%;
+}
+
+.right {
+    float: right;
+    margin-left: 10%;
+}
+
+
+
+.clear {
+    /* legacy way of stopping an element of floating next to the div. Note that the issue is that the div is still out of the normal flow, so the section is not actually containing the floated div*/
+    /* clear: both; */
+}
+
+/* class for the section */
+.i {
+    background-color: bisque;
+    /* a valid way to forced the section to contain the floated is. However this is also a legacy way */
+    /* overflow: auto; */
+    
+    /* mdn improved way of ensuring that a parent container can fully contain floated elements */
+    display:flow-root;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

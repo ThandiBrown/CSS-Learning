@@ -393,21 +393,40 @@ block level elements also stack on top of each other*/
     
 }
 
+.flag {
+    border: 2px solid black;
+    width: 70%;
+}
 
+.flag .stars{
+    width: 20vw;
+    height: 20vw;
+    background-color: darkblue;
+    float: left;
+    outline: 2px solid black;
+}
 
+.flag p{
+    border-width: 0px;
+    margin: 0;
+    height:5vw;
+}
 
+.flag p:nth-child(odd){
+    background-color: red;
+}
 
+.flag .stars div{
+    /* border: 2px solid black; */
+    width: 4vw;
+    height: 5vw;
+    background-color: darkblue;
+    float: left;
+}    
 
-
-
-
-
-
-
-
-
-
-
+.flag .stars div:nth-child(even) {
+    background-color: whitesmoke;
+}
 
 
 

@@ -540,7 +540,8 @@ block level elements also stack on top of each other*/
     column causes the boxes to be added in the form of a column
     align-items will then become the horizontal alignment*/
     flex-direction: column;
-    /* reverse direction of elements in the row */
+    /* reverse direction of elements in the row 
+    start and end are also reversed for justify content*/
     flex-direction: row-reverse;
     flex-direction: row;
     
@@ -551,6 +552,7 @@ block level elements also stack on top of each other*/
     /* shorthand */
     flex-flow: row wrap;
     /* same values for justify-content */
+    /* align-content determines the spacing between lines, while align-items determines how the items as a whole are aligned within the container. When there is only one line, align-content has no effect. */
     align-content: flex-start;
     align-content: center;
 
@@ -609,6 +611,152 @@ block level elements also stack on top of each other*/
     /* shorthand. grow, shrink, basis */
     flex: 2 2 150px;
 }
+
+.container3 {
+    margin-top: 5%;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    margin-inline: auto;
+    border: 2px solid red;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.box4 {
+    border: 2px solid black;
+    padding: 20%; 
+    
+}
+
+.container4 {
+    border: 5px solid darkgreen;
+    margin-top: 5%;
+    
+    display: grid;
+    /* evenly spread out columns */
+    /* grid-auto-flow: column; */
+    /*  3 values create 3 columns */
+    grid-template-columns: 10vw 10vw 10vw;
+    /* fr: fraction/parts
+    this will consume the full width and the first column will have a size of 2/5 of the overall width */
+    grid-template-columns: 2fr 1fr 2fr;    
+    /* four columns, each one fraction */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr 2fr);
+    
+    min-height: 100px;
+    /* set (size for the row) the minimum and maximum height for a row
+    auto signifies that it can grow indefinitely */
+    grid-auto-rows: minmax(100px, auto);    
+    grid-auto-rows: minmax(auto, auto);
+    column-gap: 1em;
+    row-gap: 1em;
+    /* shorthand */
+    gap: 1em 0.5em;
+    gap: 1rem;
+    
+}
+
+
+.box5 {
+    color: white;
+    background-color: black;
+    
+    font-size: 2rem;
+    padding: 0.5rem;
+    outline: 0.5px solid whitesmoke;
+    
+}
+
+.box5:first-child {
+    background-color: purple;
+    /* this means to start at the first column line and end at the fourth column line (this will span three columns)*/
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    /* shorthand: start, end */
+    grid-column: 1/4;
+    grid-row: 1/3;
+}
+
+.box5:nth-child(2) {
+    background-color: darkgreen;
+    
+    /* this causes it to span the entire row */
+    grid-column: 1/5;
+    /* this ensures that ends up at row 3 
+    
+    the grid will figure out everything that is not explicitly stated. Remove this to see*/
+    grid-row: 3/4;
+}
+
+/* grid within a grid */
+.box5:nth-child(6) {
+    /* centering with grid */
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    /* shorthand: align,  justify */
+    place-content: center center;
+    place-content: center;
+}
+
+.box5:nth-child(7) {
+    /* the end value is not have to be greater than the start! */
+    grid-column-start: 4;
+    grid-column-end: 2;
+}
+
+.box5:nth-child(8) {
+    /* using negative values will count the lines from the right to left. So this is starts at the fourth grid line from the right and ends at the third grid line from the right */
+    grid-column-start: -4;
+    grid-column-end: -3;
+}
+
+
+.box5:nth-child(9)  {
+    grid-column-start: -4;
+    /* spans 2 grid spaces */
+    grid-column-end: span 2;
+    grid-column: -4/span 2;
+}
+
+.box5:nth-child(10)  {
+    /* spans 3 grid spaces relative to the ending*/
+    grid-column-start: span 3;
+    grid-column-end: 6;
+    grid-column: span 3/6;
+}
+
+.container5 {
+    grid-template-columns: repeat(4, 1fr);    
+    grid-template-rows: repeat(14, 1fr);
+    
+    /* shorthand
+    grid-template-rows / grid-template-columns*/
+    grid-template: repeat(14, 1fr) / repeat(4, 1fr);
+}
+
+.box5:nth-child(11) {
+    /* shorthand
+    grid-row-start
+    grid-column-start
+    grid-row-end
+    grid-column-end
+    OR
+    (row, col, row, col)
+     */
+    grid-area: 8/2/11/6;
+    grid-area: 8/2/span 3/span 4;
+}
+
+.box5:nth-child(12) {
+    order: 1;
+}
+
+
 
 
 

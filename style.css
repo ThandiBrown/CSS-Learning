@@ -433,6 +433,183 @@ block level elements also stack on top of each other*/
 }
 
 
+.outer-container {
+    border: 2px dashed black;
+    width: 75vw;
+    height: 85vh;
+    margin: 40px auto;
+    
+}
+
+.outer-container p {
+    border: none;
+}
+
+.inner-container {
+    border: 2px solid lightblue;
+    width: 40vw;
+    height: 50vh;
+    margin: 200px auto;
+    position: relative;
+}
+
+/* remove this to note that using the position tag will remove elements from the normal flow and they will no longer span the full width as a block element normally would */
+.box {
+    width: 150px;
+    height: 150px;
+    padding: 1rem;
+    color: white;
+}
+
+.absolute {
+    background-color: darkblue;
+    /* needs a relative parent container. If one is not defined, it will treat the browser window as its relative parent
+    
+    the next nearest relative parent will be the relative parent chooses*/
+    position: absolute;
+    top: 80px;
+    left: 0px;
+}
+
+
+.relative {
+    background-color: darkred;
+    /* this works very similar to absolute except it just *makes* its nearest-parent container relative rather than having to explicitly define it*/
+    position: relative;
+    top: 150px;
+    left: 100px;
+    /* this value can be adjusted to make certain elements appear on  top or behind others */
+    z-index:-1;
+}
+
+
+/* might be good for fixed nav bars */
+.fixed {
+    background-color: darkgreen;
+    /* position is set regardless of scrolling. its position defined will always be in reference to the browser window */
+    position: fixed;
+    /* both top/bottom or left/right values are needed for fixed to appear on screen */
+    top: 1000px;
+    left: 0px;
+}
+
+.sticky {
+    /* similar to fixed. It will stay in his normal flow (fixed) until it  has reached a spot defined
+    
+    when the container that it is in, leaves the view of the page, so does the sticky container (cannot be positioned/moved outside of its container)*/
+    position: sticky;
+    background-color: black;
+    /* this box will stay as 600 pixels vertical height of the browser window until it reaches the end of it's container */
+    top: 600px;
+    
+}
+
+.absolute-accessibility {
+    background-color: goldenrod;
+    /* a more accessibility friendly way then using display:none 
+    moves the element visually not on the page, but can still be read by a screen reader*/
+    position: absolute;
+    left: -10000px;
+}
+
+.container {
+    max-width: 800px;
+    min-height: 400px;
+    margin-inline: auto;
+    border: 2px solid black;
+    /* before this, the boxes had a standard block style display. After adding this, it seems liee the boxes have more of a float (left) type of structure */
+    display: flex;
+    /* flex-start is the default (pushes boxes to the left), flex-end pushes boxes to the right*/
+    /* justify-content is used for structuring and spacing horizontally */
+    justify-content: flex-end;
+    justify-content: center;
+    /* gap between boxes */
+    gap: 1rem;
+    /* evenly spaces out boxes except for the beginning and end, and thus is not commonly used */
+    justify-content: space-around;
+    /* evenly spaced between boxes leaving no space at the front or end */
+    justify-content: space-between;
+    /* causes even spacing including at the beginning and end */
+    justify-content: space-evenly;
+    
+    
+    /* thiss is for vertical alignment of the boxes */
+    align-items:flex-end;
+    align-items:center;
+    /* default is row
+    column causes the boxes to be added in the form of a column
+    align-items will then become the horizontal alignment*/
+    flex-direction: column;
+    /* reverse direction of elements in the row */
+    flex-direction: row-reverse;
+    flex-direction: row;
+    
+    
+    /* at this point, the boxes will not resize to stay within the container which is considered an overflow
+    default is nowrap*/
+    flex-wrap: wrap;
+    /* shorthand */
+    flex-flow: row wrap;
+    /* same values for justify-content */
+    align-content: flex-start;
+    align-content: center;
+
+}
+
+.box2 {
+    color: white;
+    background-color: black;
+    min-width: 100px;
+    height: 100px;
+    font-size: 2rem;
+    padding: 0.5rem;
+    border: 2px solid darkred;
+    /* these three values can be used to center anything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.box2:nth-child(2) {
+    /* default is zero. Numbers greater than zero willl push it to the back while a negative number would push it to the front  */
+    order: 1;
+}
+
+.container2 {
+    flex-flow: row nowrap;
+}
+
+
+.box3 {
+    color: white;
+    background-color: black;
+    
+    height: 100px;
+    font-size: 2rem;
+    padding: 0.5rem;
+    border: 2px solid darkred;
+    /* these three values can be used to center anything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* causes the box to grow as needed to fill up the container */
+    flex-grow: 1;
+    flex-shrink: 1;
+    /* indicates when the grow/shrink properties should take effect (width val)*/
+    flex-basis: 400px;
+}
+
+
+.box3:nth-child(2) {
+    /* this means after the 250 pixels (flex-basis), this box will grow it twice the rate as the other to fill up the remaining space */
+    flex-grow: 2;
+    flex-shrink: 2;
+    /* shorthand. grow, shrink, basis */
+    flex: 2 2 150px;
+}
+
 
 
 
